@@ -15,7 +15,7 @@ function XHR(file, callback){
 
 // The initial method called on page load
 function init() {
-    XHR('data.json', function(response) {
+    XHR('studentdetails.json', function(response) {git push -u origin master
         // Parse JSON string into object
         items = JSON.parse(response);
         });
@@ -28,8 +28,8 @@ function init() {
 function findIndexOfItemWithBarcode(barcode) {
     
     for (index in items) {
-        console.log(items[index].id)
-        if (barcode == items[index].id) {
+        console.log(items[index].roll)
+        if (barcode == items[index].roll) {
             // found the item
             return index
         }
@@ -39,25 +39,30 @@ function findIndexOfItemWithBarcode(barcode) {
 
 function updateDetailsOfItemAtIndex(index) {
     
-    var details = "id: " + items[index].id
+    var details = "id: " + items[index].roll
     details += "<br>"
-    details += items[index].item
+    details += items[index].name
     details += "<br>"
-    details += items[index].description
+    details += items[index].branch
     details += "<br>"
-    details += "Rs. " + items[index].price
+    details += items[index].aadhar
+     details += "<br>"
+    details +=  items[index].phone
+    
     
     document.getElementById("itemDetails").innerHTML = details
-//    console.log("id: " + items[index].id)
-//    console.log("item: " + items[index].description)
-//    console.log("price: " + items[index].price)
+//    console.log("roll: " + items[index].roll)
+//    console.log("item: " + items[index].name)
+//    console.log(items[index].branch)
+//    console.log(items[index].aadhar)
+//    console.log(items[index].phone)
 }
 
 function getItemWithBarCode(event) {
     
     event.preventDefault()
     
-    // read the barcode id
+    // read the barcode roll
     var barcode = document.getElementById("barcode").value
     document.getElementById("barcode").value = ''
     
